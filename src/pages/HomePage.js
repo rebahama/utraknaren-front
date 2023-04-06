@@ -1,14 +1,8 @@
-import React from 'react'
-import styles from '../styles/HomePage.module.css'
+import React from "react";
+import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
-  return (
-    <div>
-HomePage
-   
-    </div>
+  return <div>HomePage</div>;
+};
 
-  )
-}
-
-export default HomePage
+export default HomePage;
