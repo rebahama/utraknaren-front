@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ChildProps from "./ChildProps";
 
 const ShowAll = () => {
   const [calculate, setCalculate] = useState({ results: [] });
@@ -23,10 +24,7 @@ const ShowAll = () => {
   return (
     <div>
       {calculate.results.map((calculate) => {
-        return <div key={calculate.id}>
-            {calculate.name}
-            {calculate.content}
-            </div>;
+        return <ChildProps key={calculate.id} {...calculate} />;
       })}
     </div>
   );
