@@ -15,7 +15,11 @@ const NavBar = () => {
           <Nav className="me-auto">
             <NavLink to="/"> Home</NavLink>
             <NavLink to="createaccount">
-              <i className="fas fa-solid fa-plus"> </i> Create a sale
+              <i className="fas fa-solid fa-plus"> </i> Create a account
+            </NavLink>
+
+            <NavLink to="showall">
+              <i className="fas fa-solid fa-plus"> </i> Show all
             </NavLink>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

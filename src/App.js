@@ -5,6 +5,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import CreateAccount from "./auth/CreateAccount";
 import NavBar from "./components/NavBar";
+import ShowAll from "./pages/ShowAll";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/createaccount" element={<CreateAccount />} />
+        <Route exact path="/showall" element={<ShowAll />} />
       </Routes>
-      <Button variant="primary">Primary</Button>
+      
     </div>
   );
 }
