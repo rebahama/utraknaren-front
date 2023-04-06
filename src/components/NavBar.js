@@ -21,6 +21,10 @@ const NavBar = () => {
             <NavLink to="showall">
               <i className="fas fa-solid fa-plus"> </i> Show all
             </NavLink>
+
+            <NavLink to="login">
+              <i className="fas fa-solid fa-plus"> </i> Login
+            </NavLink>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
