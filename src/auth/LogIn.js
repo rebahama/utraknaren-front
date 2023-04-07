@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
-import { useSetCurrentUser } from "../context/CurrentUserContext";
 import { useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   /** When user signs in  */
 
-  const setCurrentUser = useSetCurrentUser();
   const [SignIn, SetSignIn] = useState({
     username: "",
     password: "",
@@ -25,7 +23,6 @@ const LogIn = () => {
         "https://utraknaren-drf.herokuapp.com/dj-rest-auth/login/",
         SignIn
       );
-      setCurrentUser(data.user);
       console.log(data)
       navigate("/");
     } catch (err) {
