@@ -9,7 +9,7 @@ const ShowAll = () => {
   useEffect(() => {
     const handleData = async () => {
       try {
-        const { data } = await axiosReq("https://utraknaren-drf.herokuapp.com/posts/");
+        const { data } = await axiosReq("/posts/");
         setCalculate(data);
         console.log(data);
       } catch (err) {

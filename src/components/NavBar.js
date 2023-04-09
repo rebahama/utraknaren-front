@@ -4,11 +4,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
-import { useSetCurrentUser } from "../context/CurrentUserContext";
-
 
 const NavBar = () => {
-const setCurrentUser= useSetCurrentUser();
+
   
   return (
     <Navbar bg="light" expand="lg">
@@ -25,7 +23,7 @@ const setCurrentUser= useSetCurrentUser();
               <i className="fas fa-solid fa-plus"> </i> Show all
             </NavLink>
 <p> sss</p>
-{setCurrentUser?.username}
+
             <NavLink to="login">
               <i className="fas fa-solid fa-plus"> </i> Login
             </NavLink>

@@ -3,12 +3,12 @@ import axios from "axios";
 import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useSetCurrentUser } from "../context/CurrentUserContext";
+
 
 const LogIn = () => {
   /** When user signs in  */
 
-  const setCurrentUser = useSetCurrentUser();
+
   const [SignIn, SetSignIn] = useState({
     username: "",
     password: "",
@@ -22,10 +22,9 @@ const LogIn = () => {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://utraknaren-drf.herokuapp.com/dj-rest-auth/login/",
+        "/dj-rest-auth/login/",
         SignIn
       );
-      setCurrentUser(data.user)
       navigate("/");
     } catch (err) {
       setError(err.response?.data);

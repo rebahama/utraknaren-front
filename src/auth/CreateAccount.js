@@ -25,7 +25,7 @@ const CreateAccount = () => {
     event.preventDefault();
 
     try {
-      await axios.post("https://utraknaren-drf.herokuapp.com/dj-rest-auth/registration/", signUp);
+      await axios.post("/dj-rest-auth/registration/", signUp);
       setMessage("Account created")
     } catch (err) {
       console.log(err);
