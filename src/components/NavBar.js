@@ -4,10 +4,22 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
+import { CurrentUserContext } from "../App";
 
 const NavBar = () => {
-
-  
+  const currentUser = useContext(CurrentUserContext);
+  const loggedIn = (
+    <>
+      {" "}
+      <p> You are logged in </p>
+    </>
+  );
+  const NotLogg = (
+    <>
+      {" "}
+      <p> You are not logged in </p>
+    </>
+  );
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -22,7 +34,7 @@ const NavBar = () => {
             <NavLink to="showall">
               <i className="fas fa-solid fa-plus"> </i> Show all
             </NavLink>
-<p> sss</p>
+            {currentUser ? loggedIn : NotLogg}
 
             <NavLink to="login">
               <i className="fas fa-solid fa-plus"> </i> Login

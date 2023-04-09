@@ -1,13 +1,14 @@
-import React, {useState } from "react";
+import React, {useContext, useState } from "react";
 import axios from "axios";
 import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { SetCurrentUserContext } from "../App";
 
 
 const LogIn = () => {
   /** When user signs in  */
-
+const SetCurrentUser=useContext(SetCurrentUserContext)
 
   const [SignIn, SetSignIn] = useState({
     username: "",
@@ -19,12 +20,14 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const submitForm = async (event) => {
+
     event.preventDefault();
     try {
       const { data } = await axios.post(
         "/dj-rest-auth/login/",
         SignIn
       );
+      SetCurrentUser(data.user)
       navigate("/");
     } catch (err) {
       setError(err.response?.data);
