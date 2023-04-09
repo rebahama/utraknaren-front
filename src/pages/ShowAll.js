@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ChildProps from "./ChildProps";
+import { axiosReq } from "../api/axiosDefault";
 
 const ShowAll = () => {
   const [calculate, setCalculate] = useState({ results: [] });
@@ -8,10 +9,7 @@ const ShowAll = () => {
   useEffect(() => {
     const handleData = async () => {
       try {
-        const { data } = await axios.get(
-          "https://utraknaren-drf.herokuapp.com/posts/"
-        );
-
+        const { data } = await axiosReq("https://utraknaren-drf.herokuapp.com/posts/");
         setCalculate(data);
         console.log(data);
       } catch (err) {
