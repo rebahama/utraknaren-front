@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import axios from "axios";
 import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { SetCurrentUserContext } from "../App";
+import { useSetCurrentUser } from "../context/CurrentUserContext";
 
 const LogIn = () => {
   /** When user signs in  */
-const setCurrentUser = useContext(SetCurrentUserContext);
+
+  const setCurrentUser = useSetCurrentUser();
   const [SignIn, SetSignIn] = useState({
     username: "",
     password: "",
@@ -25,7 +26,6 @@ const setCurrentUser = useContext(SetCurrentUserContext);
         SignIn
       );
       setCurrentUser(data.user)
-      console.log(data)
       navigate("/");
     } catch (err) {
       setError(err.response?.data);
@@ -36,6 +36,7 @@ const setCurrentUser = useContext(SetCurrentUserContext);
     SetSignIn({
       ...SignIn,
       [event.target.name]: event.target.value,
+      
     });
   };
 

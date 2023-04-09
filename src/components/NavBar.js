@@ -4,11 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { CurrentUserContext } from "../App";
+import { useSetCurrentUser } from "../context/CurrentUserContext";
+
 
 const NavBar = () => {
-const currentUser = useContext(CurrentUserContext)
+const setCurrentUser= useSetCurrentUser();
   
   return (
     <Navbar bg="light" expand="lg">
@@ -24,8 +24,8 @@ const currentUser = useContext(CurrentUserContext)
             <NavLink to="showall">
               <i className="fas fa-solid fa-plus"> </i> Show all
             </NavLink>
-            <p> {currentUser?.username}</p>
-
+<p> sss</p>
+{setCurrentUser?.username}
             <NavLink to="login">
               <i className="fas fa-solid fa-plus"> </i> Login
             </NavLink>
