@@ -3,7 +3,6 @@ import axios from "axios";
 import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { SetCurrentUserContext } from "../App";
 import { useSetCurrentUser } from "../contexts/CurrentUserContext";
 
 
@@ -28,12 +27,15 @@ const LogIn = () => {
         "/dj-rest-auth/login/",
         SignIn
       );
-      setCurrentUser(data.user)
+      setCurrentUser(data.key)
       navigate("/");
+      console.log(data)
     } catch (err) {
       setError(err.response?.data);
     }
   };
+
+  
 
   const handleInput = (event) => {
     SetSignIn({
