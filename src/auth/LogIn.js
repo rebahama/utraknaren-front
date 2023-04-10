@@ -4,11 +4,12 @@ import styles from "../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { SetCurrentUserContext } from "../App";
+import { useSetCurrentUser } from "../contexts/CurrentUserContext";
 
 
 const LogIn = () => {
   /** When user signs in  */
-const SetCurrentUser=useContext(SetCurrentUserContext)
+  const setCurrentUser = useSetCurrentUser()
 
   const [SignIn, SetSignIn] = useState({
     username: "",
@@ -27,7 +28,7 @@ const SetCurrentUser=useContext(SetCurrentUserContext)
         "/dj-rest-auth/login/",
         SignIn
       );
-      SetCurrentUser(data.user)
+      setCurrentUser(data.user)
       navigate("/");
     } catch (err) {
       setError(err.response?.data);
