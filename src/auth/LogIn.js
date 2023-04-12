@@ -27,7 +27,7 @@ const LogIn = () => {
         "/dj-rest-auth/login/",
         SignIn
       );
-      setCurrentUser(data.key)
+      setCurrentUser(data.user)
       navigate("/");
       console.log(data)
     } catch (err) {
