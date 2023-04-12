@@ -30,7 +30,7 @@ const NavBar = () => {
         <NavDropdown.Item href="#action/3.1">Skapa uträkning</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Redigera uträkning</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.4">Reseersättning</NavDropdown.Item>
       </NavDropdown>
 
       <NavLink to="/showall" className={`nav-link ${styles["nav-link"]}`}>
