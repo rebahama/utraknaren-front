@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import styles from "../styles/NavBar.module.css";
 import axios from "axios";
 
 const NavBar = () => {
-  const currentUser = useCurrentUser()
-  const setCurrentUser=useSetCurrentUser()
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
   const handleLogOut = async () => {
     try {
@@ -19,17 +23,17 @@ const NavBar = () => {
       console.log(err);
     }
   };
-console.log(currentUser?.username)
+  console.log(currentUser?.username);
   const loggedIn = (
     <>
       {" "}
-      <p> You are logged in {currentUser?.username} </p>
+      <span className={styles.username}> You are logged in {currentUser?.username} </span>
     </>
   );
   const NotLogg = (
     <>
       {" "}
-      <p> You are not logged in </p>
+      <span> You are not logged in </span>
     </>
   );
   return (
@@ -38,23 +42,25 @@ console.log(currentUser?.username)
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavLink to="/"> Home</NavLink>
-            <NavLink to="createaccount">
-              <i className="fas fa-solid fa-plus"> </i> Create a account
+          <Nav className={`navbar navbar-expand-lg ms-auto justify-content-end ${styles.navbar}`}>
+            <NavLink exact to="/" className={`nav-link ${styles["nav-link"]}`}>
+              Home
+            </NavLink>
+            <NavLink
+              to="/createaccount"
+              className={`nav-link ${styles["nav-link"]}`}
+            >
+              Create an account
+            </NavLink>
+            <NavLink to="/showall" className={`nav-link ${styles["nav-link"]}`}>
+              Show all
             </NavLink>
 
-            
-
-            
-            <NavLink to="showall">
-              <i className="fas fa-solid fa-plus"> </i> Show all
-            </NavLink>
-            {currentUser ? loggedIn : NotLogg}
-
-            <NavLink to="login">
-              <i className="fas fa-solid fa-plus"> </i> Login
-            </NavLink>
+            {!currentUser && (
+              <NavLink to="/login" className={`nav-link ${styles["nav-link"]}`}>
+                Login
+              </NavLink>
+            )}
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
@@ -66,9 +72,16 @@ console.log(currentUser?.username)
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-            <NavLink to="/" onClick={handleLogOut}>
-              <i className="fas fa-solid fa-plus"> </i> Logout
-            </NavLink>
+            {currentUser && (
+              <NavLink
+                to="/"
+                onClick={handleLogOut}
+                className={`nav-link ${styles["nav-link"]}`}
+              >
+                Logout
+              </NavLink>
+            )}
+            {currentUser ? loggedIn : NotLogg}
           </Nav>
         </Navbar.Collapse>
       </Container>
