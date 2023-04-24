@@ -70,7 +70,7 @@ const NavBar = () => {
           <Nav
             className={`navbar navbar-expand-lg ms-auto justify-content-end ${styles.navbar}`}
           >
-            <NavLink exact to="/" className={`nav-link ${styles["nav-link"]}`}>
+            <NavLink to="/" className={`nav-link ${styles["nav-link"]}`}>
               Hem
             </NavLink>
 
