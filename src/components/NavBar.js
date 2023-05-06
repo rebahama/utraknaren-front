@@ -27,7 +27,7 @@ const NavBar = () => {
   const loggedIn = (
     <>
       <NavDropdown title="Mer" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Skapa uträkning</NavDropdown.Item>
+        <NavLink to="/createcalculate">Skapa uträkning</NavLink>
         <NavDropdown.Item href="#action/3.2">Redigera uträkning</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.4">Reseersättning</NavDropdown.Item>
