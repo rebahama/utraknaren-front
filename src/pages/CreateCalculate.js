@@ -75,12 +75,12 @@ const CreateCalculate = () => {
             {message}
           </Alert>
         ))}
-
+ <Form.Group>
         <Form.Label>Calculate</Form.Label>
         <Form.Control
           as="select"
           name="calculate"
-          value={calculate}
+         
           onChange={handleCalculate}
         >
           <option value={calculate}> 25 </option>
@@ -92,7 +92,7 @@ const CreateCalculate = () => {
             {message}
           </Alert>
         ))}
-
+</Form.Group>
         <Button variant="primary" type="submit">
           Create 
         </Button>
