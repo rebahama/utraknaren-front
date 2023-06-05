@@ -11,10 +11,11 @@ const CreateCalculate = (props) => {
     title: "",
     content: "",
     calculate: 1,
+    calculate_name:25,
     
   });
 
-  const { title, content, calculate,} = calculateNumber;
+  const { title, content, calculate,calculate_name} = calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
