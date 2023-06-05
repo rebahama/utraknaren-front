@@ -3,7 +3,8 @@ import { axiosReq } from "../api/axiosDefault";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
-const CreateCalculate = () => {
+const CreateCalculate = (props) => {
+  const [value,TheValue]=useState("testing");
   const currentUser = useCurrentUser();
   const[message,setMessage]=useState("")
   const [calculateNumber, setCalculateNumber] = useState({
@@ -13,7 +14,7 @@ const CreateCalculate = () => {
     
   });
 
-  const { title, content, calculate } = calculateNumber;
+  const { title, content, calculate,} = calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
@@ -44,6 +45,12 @@ const CreateCalculate = () => {
       }
     }
   };
+
+  const countIt=()=>{
+    
+    TheValue(calculate_name+3)
+
+  }
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -93,6 +100,8 @@ const CreateCalculate = () => {
           </Alert>
         ))}
 </Form.Group>
+<Button onClick={countIt}> Count </Button>
+<p> {value}</p>
         <Button variant="primary" type="submit">
           Create 
         </Button>
