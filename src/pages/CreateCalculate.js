@@ -12,10 +12,11 @@ const CreateCalculate = (props) => {
     content: "",
     calculate: 1,
     calculate_name:25,
+    calculate_nametwo:50,
     
   });
 
-  const { title, content, calculate,calculate_name} = calculateNumber;
+  const { title, content, calculate,calculate_name,calculate_nametwo} = calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
@@ -70,14 +71,14 @@ const CreateCalculate = (props) => {
             {message}
           </Alert>
         ))}
-
+<p>Result: {value} </p>
         <Form.Control
           as="textarea"
           name="content"
           value={content}
           onChange={handleCalculate}
         ></Form.Control>
-
+  
         {error?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
             {message}
