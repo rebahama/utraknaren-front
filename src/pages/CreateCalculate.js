@@ -4,19 +4,19 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const CreateCalculate = (props) => {
-  const [value,TheValue]=useState("testing");
+  const [value, TheValue] = useState("testing");
   const currentUser = useCurrentUser();
-  const[message,setMessage]=useState("")
+  const [message, setMessage] = useState("");
   const [calculateNumber, setCalculateNumber] = useState({
     title: "",
-    content: "",
+    content: 0,
     calculate: 1,
-    calculate_name:25,
-    calculate_nametwo:50,
-    
+    calculate_name: 25,
+    calculate_nametwo: 50,
   });
 
-  const { title, content, calculate,calculate_name,calculate_nametwo} = calculateNumber;
+  const { title, content, calculate, calculate_name, calculate_nametwo } =
+    calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
@@ -37,7 +37,7 @@ const CreateCalculate = (props) => {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      setMessage("Created!")
+      setMessage("Created!");
 
       console.log(data);
     } catch (err) {
@@ -48,11 +48,9 @@ const CreateCalculate = (props) => {
     }
   };
 
-  const countIt=()=>{
-    
-    TheValue(calculate_name+3)
-
-  }
+  const countIt = () => {
+    TheValue(parseInt(content) + 3);
+  };
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -71,41 +69,40 @@ const CreateCalculate = (props) => {
             {message}
           </Alert>
         ))}
-<p>Result: {value} </p>
+        <p>Result: {value} </p>
         <Form.Control
-          as="textarea"
+          type="number"
+          placeholder="Describe"
           name="content"
+          min="0"
+          max="1000000"
           value={content}
           onChange={handleCalculate}
         ></Form.Control>
-  
+
+      
+
         {error?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
             {message}
           </Alert>
         ))}
- <Form.Group>
-        <Form.Label>Calculate</Form.Label>
-        <Form.Control
-          as="select"
-          name="calculate"
-         
-          onChange={handleCalculate}
-        >
-          <option value={calculate}> 25 </option>
-          <option value={2}> 50 </option>
-        </Form.Control>
+        <Form.Group>
+          <Form.Label>Calculate</Form.Label>
+          <Form.Control as="select" name="calculate" onChange={handleCalculate}>
+            <option value={calculate}> 25 </option>
+            <option value={2}> 50 </option>
+          </Form.Control>
 
-        {error?.calculate?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-</Form.Group>
-<Button onClick={countIt}> Count </Button>
-<p> {value}</p>
+          {error?.calculate?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
+        <Button onClick={countIt}> Count </Button>
         <Button variant="primary" type="submit">
-          Create 
+          Create
         </Button>
         {message}
       </Form>
