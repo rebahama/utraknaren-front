@@ -4,12 +4,12 @@ import { Alert, Button, Form } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const CreateCalculate = (props) => {
-  const [value, TheValue] = useState("testing");
+  const [value, TheValue] = useState("");
   const currentUser = useCurrentUser();
   const [message, setMessage] = useState("");
   const [calculateNumber, setCalculateNumber] = useState({
     title: "",
-    content: 0,
+    content: "",
     calculate: 1,
     calculate_name: 25,
     calculate_nametwo: 50,
@@ -49,8 +49,14 @@ const CreateCalculate = (props) => {
   };
 
   const countIt = () => {
-    TheValue(parseInt(content) + 3);
+    TheValue(parseInt(content) * 0.25);
   };
+
+  const countFifty = () => {
+    TheValue(parseInt(content * 0.5));
+  };
+
+ 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -80,8 +86,6 @@ const CreateCalculate = (props) => {
           onChange={handleCalculate}
         ></Form.Control>
 
-      
-
         {error?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
             {message}
@@ -100,10 +104,15 @@ const CreateCalculate = (props) => {
             </Alert>
           ))}
         </Form.Group>
-        <Button onClick={countIt}> Count </Button>
+        <Button onClick={countIt}> 25% </Button>
+        <p> </p>
+        <Button onClick={countFifty}> 50% </Button>
+        <p> </p>
         <Button variant="primary" type="submit">
           Create
         </Button>
+
+        
         {message}
       </Form>
     </div>
