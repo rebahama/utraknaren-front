@@ -22,10 +22,10 @@ const ChildProps = (props) => {
                     Name: {name}
                   </Card.Text>
                   <Card.Text className={styles["custom-card-text"]}>
-                    Calculate Name: {calculate_name}
+                    Siffer categori: {calculate_name}
                   </Card.Text>
                   <Card.Text className={styles["custom-card-text"]}>
-                    Calculate Name: {content}
+                    Ursprunglig siffra: {content}
                   </Card.Text>
                   <Card.Text className={styles["custom-card-text"]}>
                     Created At: {created_at}

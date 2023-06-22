@@ -11,11 +11,10 @@ const CreateCalculate = (props) => {
     title: "",
     content: "",
     calculate: 1,
-    calculate_name: 25,
-    calculate_nametwo: 50,
+    result:""
   });
 
-  const { title, content, calculate, calculate_name, calculate_nametwo } =
+  const { title, content, calculate, result} =
     calculateNumber;
   const [error, setError] = useState({});
 
@@ -34,6 +33,7 @@ const CreateCalculate = (props) => {
     formData.append("content", content);
     formData.append("owner", currentUser.profile_id);
     formData.append("calculate", calculate);
+    formData.append("result", result);
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
@@ -65,7 +65,7 @@ const CreateCalculate = (props) => {
           <Form.Control
             type="text"
             name="title"
-            placeholder="Enter title"
+            placeholder="Titel"
             value={title}
             onChange={handleCalculate}
           />
@@ -78,7 +78,7 @@ const CreateCalculate = (props) => {
         <p>Result: {value} </p>
         <Form.Control
           type="number"
-          placeholder="Describe"
+          placeholder="Ursprunglig siffra"
           name="content"
           min="0"
           max="1000000"
@@ -91,8 +91,24 @@ const CreateCalculate = (props) => {
             {message}
           </Alert>
         ))}
+
+<Form.Control
+          type="number"
+          placeholder="Resultat"
+          name="result"
+          min="0"
+          max="1000000"
+          value={value}
+          onChange={handleCalculate}
+        ></Form.Control>
+
+        {error?.content?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
         <Form.Group>
-          <Form.Label>Calculate</Form.Label>
+          <Form.Label>Category number</Form.Label>
           <Form.Control as="select" name="calculate" onChange={handleCalculate}>
             <option value={calculate}> 25 </option>
             <option value={2}> 50 </option>
