@@ -3,7 +3,7 @@ import styles from "../styles/ChildPros.module.css";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 const ChildProps = (props) => {
-  const { id, title, calculate_name, name,content, created_at, updated_at } = props;
+  const { id, title, calculate_name, name,content, created_at, updated_at, results } = props;
   return (
     <div className={styles.backgroundContainer}>
       <Container>
@@ -26,6 +26,10 @@ const ChildProps = (props) => {
                   </Card.Text>
                   <Card.Text className={styles["custom-card-text"]}>
                     Ursprunglig siffra: {content}
+                  </Card.Text>
+
+                  <Card.Text className={styles["custom-card-text"]}>
+                    Resultat: {results}
                   </Card.Text>
                   <Card.Text className={styles["custom-card-text"]}>
                     Created At: {created_at}

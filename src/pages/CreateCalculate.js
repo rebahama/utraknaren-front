@@ -11,7 +11,7 @@ const CreateCalculate = (props) => {
     title: "",
     content: "",
     calculate: 1,
-    result:""
+    result: 1,
   });
 
   const { title, content, calculate, result} =
