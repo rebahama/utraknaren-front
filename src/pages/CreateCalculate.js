@@ -10,12 +10,12 @@ const CreateCalculate = (props) => {
   const [calculateNumber, setCalculateNumber] = useState({
     title: "",
     content: "",
+    hello:"",
     calculate: 1,
     result: 1,
   });
 
-  const { title, content, calculate, result} =
-    calculateNumber;
+  const { title, content, calculate, result,hello } = calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
@@ -49,14 +49,13 @@ const CreateCalculate = (props) => {
   };
 
   const countIt = () => {
-    TheValue(parseInt(content) * 0.25);
+    TheValue(parseInt(hello) * 0.25);
   };
 
   const countFifty = () => {
-    TheValue(parseInt(content * 0.5));
+    TheValue(parseInt(hello * 0.5));
   };
 
- 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -75,10 +74,21 @@ const CreateCalculate = (props) => {
             {message}
           </Alert>
         ))}
-        <p>Result: {value} </p>
+
+<Form.Control
+          type="number"
+          placeholder="Skriv in ursprunglig belopp"
+          min="0"
+          name="hello"
+          max="1000000"
+          value={hello}
+          onChange={handleCalculate}
+        ></Form.Control>
+
+<p>Result: {value} </p>
         <Form.Control
           type="number"
-          placeholder="Ursprunglig siffra"
+          placeholder="Skriv in resultat"
           name="content"
           min="0"
           max="1000000"
@@ -86,21 +96,18 @@ const CreateCalculate = (props) => {
           onChange={handleCalculate}
         ></Form.Control>
 
+
+         
+
+         
+
         {error?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
             {message}
           </Alert>
         ))}
 
-<Form.Control
-          type="number"
-          placeholder="Resultat"
-          name="result"
-          min="0"
-          max="1000000"
-          value={value}
-          onChange={handleCalculate}
-        ></Form.Control>
+       
 
         {error?.content?.map((message, idx) => (
           <Alert variant="warning" key={idx}>
@@ -128,7 +135,6 @@ const CreateCalculate = (props) => {
           Create
         </Button>
 
-        
         {message}
       </Form>
     </div>
