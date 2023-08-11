@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
-import { Alert, Button, Form } from "react-bootstrap";
+import styles from "../styles/CreatePage.module.css";
+import { Alert, Button, Container, Form,Row,Col } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const CreateCalculate = (props) => {
@@ -10,12 +11,12 @@ const CreateCalculate = (props) => {
   const [calculateNumber, setCalculateNumber] = useState({
     title: "",
     content: "",
-    hello:"",
+    hello: "",
     calculate: 1,
     result: 1,
   });
 
-  const { title, content, calculate, result,hello } = calculateNumber;
+  const { title, content, calculate, result, hello } = calculateNumber;
   const [error, setError] = useState({});
 
   const handleCalculate = (event) => {
@@ -57,87 +58,92 @@ const CreateCalculate = (props) => {
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label> Title </Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            placeholder="Titel"
-            value={title}
-            onChange={handleCalculate}
-          />
-        </Form.Group>
-        {error?.title?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
+    <Container>
+      <Row md={6}>
+        <Col md={6}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label> Title </Form.Label>
+              <Form.Control
+                type="text"
+                name="title"
+                placeholder="Titel"
+                value={title}
+                onChange={handleCalculate}
+                className={styles.smaller}
+              />
+            </Form.Group>
+            {error?.title?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Control
+              type="number"
+              placeholder="Skriv in ursprunglig belopp"
+              min="0"
+              name="hello"
+              className={styles.smaller}
+              max="1000000"
+              value={hello}
+              onChange={handleCalculate}
+            ></Form.Control>
+
+            <p>Result: {value} </p>
+            <Form.Control
+              type="number"
+              placeholder="Skriv in resultat"
+              name="content"
+              className={styles.smaller}
+              min="0"
+              max="1000000"
+              value={content}
+              onChange={handleCalculate}
+            ></Form.Control>
+
+            {error?.content?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            {error?.content?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+            <Form.Group>
+              <Form.Label>Siffer kategori</Form.Label>
+              <Form.Control
+                as="select"
+                className={styles.smaller}
+                name="calculate"
+                onChange={handleCalculate}
+              >
+                <option value={calculate}> 25% </option>
+                <option value={2}> 50% </option>
+              </Form.Control>
+
+              {error?.calculate?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
+            </Form.Group>
+            <Button onClick={countIt}> 25% </Button>
+            <p> </p>
+            <Button onClick={countFifty}> 50% </Button>
+            <p> </p>
+            <Button variant="primary" type="submit">
+              Create
+            </Button>
+
             {message}
-          </Alert>
-        ))}
-
-<Form.Control
-          type="number"
-          placeholder="Skriv in ursprunglig belopp"
-          min="0"
-          name="hello"
-          max="1000000"
-          value={hello}
-          onChange={handleCalculate}
-        ></Form.Control>
-
-<p>Result: {value} </p>
-        <Form.Control
-          type="number"
-          placeholder="Skriv in resultat"
-          name="content"
-          min="0"
-          max="1000000"
-          value={content}
-          onChange={handleCalculate}
-        ></Form.Control>
-
-
-         
-
-         
-
-        {error?.content?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-
-       
-
-        {error?.content?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        <Form.Group>
-          <Form.Label>Category number</Form.Label>
-          <Form.Control as="select" name="calculate" onChange={handleCalculate}>
-            <option value={calculate}> 25 </option>
-            <option value={2}> 50 </option>
-          </Form.Control>
-
-          {error?.calculate?.map((message, idx) => (
-            <Alert variant="warning" key={idx}>
-              {message}
-            </Alert>
-          ))}
-        </Form.Group>
-        <Button onClick={countIt}> 25% </Button>
-        <p> </p>
-        <Button onClick={countFifty}> 50% </Button>
-        <p> </p>
-        <Button variant="primary" type="submit">
-          Create
-        </Button>
-
-        {message}
-      </Form>
-    </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default CreateCalculate;
