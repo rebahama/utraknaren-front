@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
 import styles from "../styles/CreatePage.module.css";
-import { Alert, Button, Container, Form,Row,Col } from "react-bootstrap";
+import { Alert, Button, Container, Form, Row, Col } from "react-bootstrap";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const CreateCalculate = (props) => {
@@ -50,17 +50,25 @@ const CreateCalculate = (props) => {
   };
 
   const countIt = () => {
-    TheValue(parseInt(hello) * 0.25);
+    const ValueTwentyFive = parseInt(hello) * 0.25;
+    TheValue(ValueTwentyFive);
+    if (ValueTwentyFive <= 0 || isNaN(ValueTwentyFive)) {
+      alert("Inga tomma eller värden under 0");
+    }
   };
 
   const countFifty = () => {
-    TheValue(parseInt(hello * 0.5));
+    const Fifty = parseInt(hello * 0.5);
+    TheValue(Fifty);
+    if (Fifty <= 0 || isNaN(Fifty)) {
+      alert("Inga tomma eller värden under 0");
+    }
   };
 
   return (
-    <Container>
-      <Row md={6}>
-        <Col md={6}>
+    <Container className={`${styles.containerCenter}`}>
+      <Row md={12}>
+        <Col md={12}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label> Title </Form.Label>
